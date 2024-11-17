@@ -12,11 +12,9 @@ Dit project is een individueel werk waarin Object-Oriented Programming (OOP) wor
 
 - **C++**: Voor de implementatie.
 - **Qt**: Voor de GUI en andere functionaliteiten.
-- **CMake** *(optioneel)*: Voor het build-proces.
-- **Google Test** *(optioneel)*: Voor unit-testing.
 
 ---
 
 ## Auteur
 
-Dit project is ontwikkeld als een individueel werk voor een cursus over Object-Oriented Programming.
+Dit project is ontwikkeld als een individueel werk voor een cursus CPP Programming.
