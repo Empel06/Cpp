@@ -20,6 +20,18 @@ Question& HumanPlayer::getCurrentQuestion() {
 
 int HumanPlayer::getAnswer() const {
     int answer;
-    std::cin >> answer;
+    while (true) {
+        std::cout << "Enter answer:";
+        std::cin >> answer;
+
+        if (std::cin.fail()){
+            std::cin.clear(); // Reset de cin foutstatus
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Verwijder de ongeldige invoer
+            std::cout << "Invalid input. Please enter a number." << std::endl;
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Verwijder de rest van de invoer
+            break;
+        }
+    }
     return answer;
 }

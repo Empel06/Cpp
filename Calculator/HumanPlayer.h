@@ -3,6 +3,7 @@
 
 #include "PlayerBase.h"
 #include <iostream>
+#include <limits>
 
 class HumanPlayer : public PlayerBase {
 public:
