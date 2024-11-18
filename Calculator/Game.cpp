@@ -10,7 +10,7 @@ Game::Game(PlayerBase* player1, PlayerBase* player2)
 }
 
 void Game::startGame() {
-    while (questionCount < 10) {
+    while (questionCount < 15) {
         askQuestion();
     }
     displayScores();
@@ -32,7 +32,7 @@ void Game::askQuestion() {
             computerPlayer->decrementLives(); // Aannemende dat player2 de computer is
             if (computerPlayer->getLives() == 0) {
                 std::cout << "The computer has no lives left! You win!" << std::endl;
-                exit(0); // Stop het spel
+                exit(0);
             }
         }
     } else {
@@ -55,5 +55,20 @@ void Game::displayScores() {
     std::cout << "Final scores: " << std::endl;
     std::cout << player1->getName() << ": " << player1->getScore() << std::endl;
     std::cout << player2->getName() << ": " << player2->getScore() << std::endl;
-    std::cout << "Computer lives left: " << static_cast<ComputerPlayer*>(player2)->getLives() << std::endl;
+
+    int score1 = player1->getScore();
+    int score2 = player2->getScore();
+
+    if (score1 > score2) {
+        std::cout << player1->getName() << " wins!" << std::endl;
+    } else if (score2 > score1) {
+        std::cout << player2->getName() << " wins!" << std::endl;
+    } else {
+        std::cout << "It's a tie!" << std::endl;
+    }
+
+    ComputerPlayer* computerPlayer = dynamic_cast<ComputerPlayer*>(player2);
+    if (computerPlayer) {
+        std::cout << "You Lost! Computer lives left: " << computerPlayer->getLives() << std::endl; // Toon levens van de computer
+    }
 }

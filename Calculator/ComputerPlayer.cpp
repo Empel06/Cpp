@@ -1,6 +1,6 @@
 #include "ComputerPlayer.h"
 
-ComputerPlayer::ComputerPlayer(const std::string& name) : name(name), score(0) {}
+ComputerPlayer::ComputerPlayer(const std::string& name) : name(name), score(0), lives(10) {}
 
 void ComputerPlayer::incrementScore() {
     score++;
