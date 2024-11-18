@@ -12,10 +12,13 @@ public:
     std::string getName() const override;
     Question& getCurrentQuestion() override;
     int getAnswer() const override;
+    void decrementLives();
+    int getLives() const;
 
 private:
     std::string name;
     int score;
+    int lives;
     Question currentQuestion;
 };
 

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ComputerPlayer.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -25,6 +26,15 @@ void Game::askQuestion() {
     if (checkAnswer(answer)) {
         std::cout << "Correct!" << std::endl;
         currentPlayer->incrementScore();
+
+        ComputerPlayer* computerPlayer = dynamic_cast<ComputerPlayer*>(player2);
+        if (computerPlayer) {
+            computerPlayer->decrementLives(); // Aannemende dat player2 de computer is
+            if (computerPlayer->getLives() == 0) {
+                std::cout << "The computer has no lives left! You win!" << std::endl;
+                exit(0); // Stop het spel
+            }
+        }
     } else {
         std::cout << "Wrong answer!" << std::endl;
     }
@@ -45,4 +55,5 @@ void Game::displayScores() {
     std::cout << "Final scores: " << std::endl;
     std::cout << player1->getName() << ": " << player1->getScore() << std::endl;
     std::cout << player2->getName() << ": " << player2->getScore() << std::endl;
+    std::cout << "Computer lives left: " << static_cast<ComputerPlayer*>(player2)->getLives() << std::endl;
 }
