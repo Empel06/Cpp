@@ -10,7 +10,7 @@ Game::Game(PlayerBase* player1, PlayerBase* player2)
 }
 
 void Game::startGame() {
-    while (questionCount < 15) {
+    while (questionCount < 30) {
         askQuestion();
     }
     displayScores();
@@ -29,7 +29,7 @@ void Game::askQuestion() {
 
         ComputerPlayer* computerPlayer = dynamic_cast<ComputerPlayer*>(player2);
         if (computerPlayer) {
-            computerPlayer->decrementLives(); // Aannemende dat player2 de computer is
+            computerPlayer->decrementLives();
             if (computerPlayer->getLives() == 0) {
                 std::cout << "The computer has no lives left! You win!" << std::endl;
                 exit(0);
