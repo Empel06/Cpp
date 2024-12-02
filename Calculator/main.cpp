@@ -24,6 +24,14 @@ int main() {
     }
 
     Game game(player1, player2);
+
+    int level;
+    std::cout << "Select difficulty level (1: Easy, 2: Medium, 3: Hard): ";
+    std::cin >> level;
+
+    player1->getCurrentQuestion().setLevel(level);
+    player2->getCurrentQuestion().setLevel(level);
+
     game.startGame();
 
     delete player1;
