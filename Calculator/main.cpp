@@ -4,6 +4,8 @@
 #include "ComputerPlayer.h"
 
 int main() {
+    srand(static_cast<unsigned int>(time(0)));
+
     std::string player1Name, player2Name;
     std::cout << "Enter name for Player 1: ";
     std::cin >> player1Name;
