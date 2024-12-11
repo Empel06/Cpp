@@ -12,8 +12,9 @@ public:
     std::string getName() const override;
     Question& getCurrentQuestion() override;
     int getAnswer() const override;
-    void decrementLives();
-    int getLives() const;
+    void setLives (int lives) override;
+    void decrementLives() override;
+    int getLives() const override;
 
 private:
     std::string name;

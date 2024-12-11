@@ -22,6 +22,10 @@ int ComputerPlayer::getAnswer() const {
     return rand() % 200; // Willekeurig antwoord voor de computer
 }
 
+void ComputerPlayer::setLives(int lives) {
+    // Geen functionaliteit nodig voor de computer, laat leeg.
+}
+
 void ComputerPlayer::decrementLives(){
     if (lives > 0){
         lives--;

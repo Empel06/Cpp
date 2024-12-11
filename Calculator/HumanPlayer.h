@@ -14,9 +14,14 @@ public:
     Question& getCurrentQuestion() override;
     int getAnswer() const override;
 
+    void decrementLives() override;
+    int getLives() const override;
+    void setLives(int lives) override;
+
 private:
     std::string name;
     int score;
+    int lives;
     Question currentQuestion;
 };
 

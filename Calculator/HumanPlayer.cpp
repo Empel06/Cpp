@@ -35,3 +35,17 @@ int HumanPlayer::getAnswer() const {
     }
     return answer;
 }
+
+void HumanPlayer::decrementLives() {
+    if (lives > 0) {
+        lives--;
+    }
+}
+
+int HumanPlayer::getLives() const {
+    return lives;
+}
+
+void HumanPlayer::setLives(int lives) {
+    this->lives = lives;
+}

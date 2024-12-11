@@ -13,6 +13,10 @@ public:
     virtual std::string getName() const = 0;
     virtual Question& getCurrentQuestion() = 0;
     virtual int getAnswer() const = 0; // Virtuele functie voor polymorfisme
+
+    virtual void decrementLives() = 0;
+    virtual int getLives() const = 0;
+    virtual void setLives(int lives) = 0;
 };
 
 #endif // PLAYERBASE_H

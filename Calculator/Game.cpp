@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "HumanPlayer.h"
 
 Game::Game(PlayerBase* player1, PlayerBase* player2)
     : player1(player1), player2(player2), currentPlayer(player1), questionCount(0) {
@@ -10,7 +11,7 @@ Game::Game(PlayerBase* player1, PlayerBase* player2)
 }
 
 void Game::startGame() {
-    while (questionCount < 30) {
+    while (questionCount < 30 && player1->getLives() > 0 && player2->getLives() > 0) {
         askQuestion();
     }
     displayScores();
@@ -27,14 +28,19 @@ void Game::askQuestion() {
         std::cout << "Correct!" << std::endl;
         currentPlayer->incrementScore();
 
-        ComputerPlayer* computerPlayer = dynamic_cast<ComputerPlayer*>(player2);
-        if (computerPlayer) {
-            computerPlayer->decrementLives();
-            if (computerPlayer->getLives() == 0) {
-                std::cout << "The computer has no lives left! You win!" << std::endl;
-                exit(0);
-            }
+        // De andere speler verliest een leven
+        PlayerBase* otherPlayer = (currentPlayer == player1) ? player2 : player1;
+        otherPlayer->decrementLives(); // Verlies een leven van de tegenstander
+
+        std::cout << otherPlayer->getName() << " lost a life! Remaining lives: "
+                  << otherPlayer->getLives() << std::endl;
+
+        if (otherPlayer->getLives() == 0) {
+            std::cout << otherPlayer->getName() << " has no lives left! "
+                      << currentPlayer->getName() << " wins the game!" << std::endl;
+            exit(0);
         }
+
     } else {
         std::cout << "Wrong answer!" << std::endl;
     }
@@ -67,6 +73,7 @@ void Game::displayScores() {
         std::cout << "It's a tie!" << std::endl;
     }
 
+    // Als de computer speler is, geef dan het aantal levens weer
     ComputerPlayer* computerPlayer = dynamic_cast<ComputerPlayer*>(player2);
     if (computerPlayer) {
         std::cout << "You Lost! Computer lives left: " << computerPlayer->getLives() << std::endl; // Toon levens van de computer
